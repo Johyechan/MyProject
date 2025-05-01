@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,8 @@ namespace Game.Ball
 
         // 기울어진 방향을 가지는 프로퍼티
         public Vector3 TiltValue { get; private set; }
+
+        private Vector3 _initTiltValue = Vector3.zero;
 
         // 초기화: 인풋 액션 맵과 액션 찾기
         private void Awake()
@@ -43,7 +46,16 @@ namespace Game.Ball
         private void OnTiltPerformed(InputAction.CallbackContext context)
         {
             // 기울어진 방향의 값을 저장
-            TiltValue = context.ReadValue<Vector3>();
+            Vector3 currentTilt = context.ReadValue<Vector3>();
+
+            ResetTilt(currentTilt);
+
+            TiltValue = currentTilt - _initTiltValue;
+        }
+
+        public void ResetTilt(Vector3 currentTilt)
+        {
+            _initTiltValue = currentTilt;
         }
     }
 }
