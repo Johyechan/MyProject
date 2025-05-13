@@ -22,6 +22,12 @@ namespace Game.Map
             }
         }
 
+        // 게임을 시작하면서 현재 기울기를 기본 기울기로 초기화
+        private void Start()
+        {
+            ResetTilt();
+        }
+
         private void Update()
         {
             // 자이로센서가 활성화 되어 있다면
@@ -55,4 +61,4 @@ namespace Game.Map
         }
     }
 }
-// 마지막 작성 일자: 2025.05.12
+// 마지막 작성 일자: 2025.05.13
