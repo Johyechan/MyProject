@@ -34,7 +34,9 @@ namespace Game.Player
 
         private void Update()
         {
-            if(_inputHandle.IsInputCall())
+            _movement.Look(_inputHandle.LookVector); // 매 프레임마다 움직임 방향 바라보게 하는 함수 호출
+
+            if (_inputHandle.IsMoveInputCall()) // 인풋의 콜 여부 확인
             {
                 _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
             }
