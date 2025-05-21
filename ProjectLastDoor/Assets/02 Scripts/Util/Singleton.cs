@@ -20,7 +20,6 @@ namespace MyUtil
                     {
                         GameObject newObj = new GameObject(typeof(T).Name); // T 타입을 이름으로 가진 새로운 객체 생성
                         _instance = newObj.AddComponent<T>(); // 새로운 객체에 T 타입의 클래스를 할당시키며 동시에 인스턴스에 할당
-                        DontDestroyOnLoad(newObj); // 새로운 객체를 씬이 변경되어도 삭제 되지 않도록 지정
                     }
                 }
 
@@ -34,7 +33,6 @@ namespace MyUtil
             if(_instance == null) // 만약 초기에 인스턴스가 null이라면
             {
                 _instance = this as T; // 이 클래스를 T 타입으로 변환 후 인스턴스로 할당
-                DontDestroyOnLoad(gameObject); // 이 객체를 씬이 변경되어도 삭제되지 않게 지정
             }
             else // 만약 이미 인스턴스가 있다면
             {
@@ -43,4 +41,4 @@ namespace MyUtil
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.21

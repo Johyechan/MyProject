@@ -1,4 +1,5 @@
 using Game.Manager;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,9 +10,6 @@ namespace Game.Player
     // 플레이어의 인풋을 처리하는 클래스
     public class PlayerInputHandle
     {
-        private InputAction _inputMoveAction;
-        private InputAction _inputLookAction;
-
         private Vector2 _moveVector; // 플레이어 이동 벡터를 받는 변수
         private Vector2 _lookVector; // 플레이어 방향 벡터를 받는 변수
 
@@ -31,22 +29,16 @@ namespace Game.Player
             }
         }
 
-        public PlayerInputHandle()
-        {
-            _inputMoveAction = InputManager.Instance.GetInputAction("Move");
-            _inputLookAction = InputManager.Instance.GetInputAction("Look");
-        }
-
         public void OnEnable()
         {
-            _inputMoveAction.performed += OnMove; // "Move" 액션 이벤트 구독
-            _inputLookAction.performed += OnLook; // "Look" 액션 이벤트 구독 
+            InputManager.Instance.GetInputAction("Move").performed += OnMove; // "Move" 액션 이벤트 구독
+            InputManager.Instance.GetInputAction("Look").performed += OnLook; // "Look" 액션 이벤트 구독
         }
 
         public void OnDisable()
         {
-            _inputMoveAction.performed -= OnMove; // "Move" 액션 이벤트 구독 해제
-            _inputLookAction.performed -= OnLook; // "Look" 액션 이벤트 구독 해제
+            InputManager.Instance.GetInputAction("Move").performed -= OnMove; // "Move" 액션 이벤트 구독 해제
+            InputManager.Instance.GetInputAction("Look").performed -= OnLook; // "Look" 액션 이벤트 구독 해제
         }
 
         public bool IsInputActionCalling(string key) // 인풋이 계속 들어오고 있는지 확인하는 함수
@@ -68,4 +60,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.21

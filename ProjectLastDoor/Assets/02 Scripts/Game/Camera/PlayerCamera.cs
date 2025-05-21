@@ -10,10 +10,17 @@ namespace Game.Camera
     {
         private float _lastXAngle = 0; // 마지막 회전 값을 저장하는 변수
 
+        private void Start()
+        {
+            transform.rotation = Quaternion.identity;
+        }
+
         private void Update()
         {
             // eulerAngles를 하는 이유는 rotation은 Quaternion 값이기 때문에 Euler에 rotation 값을 넣을 경우 오류가 발생함
             float xAngle = transform.eulerAngles.x; // 현재 x축 회전 값
+
+            if (xAngle > 180) xAngle -= 360f; // 만약 xAngle이 180도 이상이라면 360도를 뺌 왜냐하면 유니티는 음수 각도를 사용하지 않기 때문
 
             if (xAngle > -30f && xAngle < 30f) // x축 회전 값이 -30 이상, 30 이하일 경우 (카메라가 뒤로 완전히 회전하는 경우를 막기 위해)
             {
@@ -27,4 +34,4 @@ namespace Game.Camera
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.21

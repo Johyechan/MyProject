@@ -1,3 +1,4 @@
+using Game.Manager;
 using MyUtil;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,8 @@ namespace Game.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed; // 이동 속도
+        [SerializeField] private float _disableDelay; // 비활성화 대기 시간
+        [SerializeField] private float _enableDelay; // 활성화 대기 시간
         [SerializeField] private Transform _playerCamTrans;
 
         private PlayerInputHandle _inputHandle; // 인풋을 처리하는 클래스
@@ -22,14 +25,28 @@ namespace Game.Player
             _movement = new PlayerMovement(transform, _playerCamTrans, _moveSpeed);
         }
 
+        // 객체 초기화
+        private void Start()
+        {
+            transform.rotation = Quaternion.identity;
+        }
+
         private void OnEnable()
         {
-            _inputHandle.OnEnable(); // 인풋 핸들의 활성화 함수 호출
+            if(InputManager.Instance != null)
+            {
+                InputManager.Instance.WaitAndEnable(_enableDelay, true); // 인풋 활성화
+                _inputHandle.OnEnable(); // 인풋 핸들의 활성화 함수 호출
+            }
         }
 
         private void OnDisable()
         {
-            _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출
+            if(InputManager.Instance != null)
+            {
+                InputManager.Instance.WaitAndEnable(_disableDelay, false); // 인풋 비활성화
+                _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출
+            }
         }
 
         private void Update()
@@ -42,4 +59,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.21
