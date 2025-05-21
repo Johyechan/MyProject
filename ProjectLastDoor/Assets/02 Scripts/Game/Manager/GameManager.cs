@@ -1,3 +1,4 @@
+using Game.Interface;
 using MyUtil;
 using UnityEngine;
 
@@ -6,17 +7,17 @@ namespace Game.Manager
 {
     // 작성자: 조혜찬
     // 게임에 필요한 기능들을 가지고 있는 싱글톤 클래스
-    public class GameManager : Singleton<GameManager>
+    public class GameManager : Singleton<GameManager>, IMyInitializable
     {
-        public GameObject Player { get; private set; } // 플레이어 객체
+        public GameObject Player { get; set; } // 플레이어 객체
 
         public float Sensitivity { get; set; } // 마우스 감도
 
-        protected override void Awake()
+        public bool Initialize()
         {
-            base.Awake();
+            Sensitivity = 10f; // 감도 초기화
 
-            Player = GameObject.Find("Player"); // 플레이어 초기화
+            return true;
         }
     }
 }

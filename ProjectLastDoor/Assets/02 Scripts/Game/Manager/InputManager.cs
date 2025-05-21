@@ -1,3 +1,4 @@
+using Game.Interface;
 using MyUtil;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,18 +10,17 @@ namespace Game.Manager
 {
     // 작성자: 조혜찬
     // 인풋과 관련된 기능들을 처리하는 싱글톤 클래스
-    public class InputManager : Singleton<InputManager>
+    public class InputManager : Singleton<InputManager>, IMyInitializable
     {
         [SerializeField] private InputActionAsset _myGameInputAsset; // 게임 내 인풋 에셋
 
         private Dictionary<string, InputActionMap> _inputActionMaps = new(); // 인풋 맵 딕셔너리
         private Dictionary<string, InputAction> _inputActions = new(); // 인풋 액션 딕셔너리
 
-        // 초기화
-        protected override void Awake()
-        {
-            base.Awake();
+        public bool IsInitialized { get; private set; }
 
+        public bool Initialize()
+        {
             foreach (var map in _myGameInputAsset.actionMaps) // 에셋에 있는 맵을 순회
             {
                 _inputActionMaps.Add(map.name, map); // 딕셔너리에 할당
@@ -30,19 +30,35 @@ namespace Game.Manager
                     _inputActions.Add(action.name, action); // 딕셔너리에 할당
                 }
             }
+
+            return true;
         }
 
+        // 초기화
+        protected override void Awake()
+        {
+            IsInitialized = false;
+
+            base.Awake();
+
+            IsInitialized = true;
+        }
+
+        // 인풋 에셋 활성화 여부 결정 함수
         public void WaitAndEnable(float delay, bool IsEnable)
         {
             StartCoroutine(WaitAndEnableCo(delay, IsEnable));
         }
 
-        // n초 후 인풋 에셋 활성화 코루틴
+        // n초 후 인풋 에셋 활성화 여부 결정 코루틴
         private IEnumerator WaitAndEnableCo(float delay, bool IsEnable)
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay); // n초 후
 
-            _myGameInputAsset.Enable();
+            if (IsEnable) // 활성화라면
+                _myGameInputAsset.Enable(); // 활성화
+            else // 비활성화라면
+                _myGameInputAsset.Disable();
         }
 
         // 원하는 액션을 부르는 함수

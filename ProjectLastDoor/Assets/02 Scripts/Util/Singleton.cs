@@ -15,12 +15,7 @@ namespace MyUtil
             {
                 if(_instance == null) // 만약 인스턴스가 null 이라면
                 {
-                    _instance = FindFirstObjectByType<T>(); // 현재 씬에서 처음 찾는 T 타입을 인스턴스로 할당
-                    if(_instance == null) // 현재 씬에 T 타입이 없다면
-                    {
-                        GameObject newObj = new GameObject(typeof(T).Name); // T 타입을 이름으로 가진 새로운 객체 생성
-                        _instance = newObj.AddComponent<T>(); // 새로운 객체에 T 타입의 클래스를 할당시키며 동시에 인스턴스에 할당
-                    }
+                    Debug.Log("Instance is null");
                 }
 
                 return _instance; // 인스턴스 반환
@@ -30,14 +25,14 @@ namespace MyUtil
         // 인스턴스 초기화
         protected virtual void Awake()
         {
-            if(_instance == null) // 만약 초기에 인스턴스가 null이라면
+            if (_instance != null && _instance != this) // 자기자신과 다른 또 다른 나를 체크 하기 위해서 this와도 다른지 확인해야함
             {
-                _instance = this as T; // 이 클래스를 T 타입으로 변환 후 인스턴스로 할당
+                Destroy(gameObject);
+                return;
             }
-            else // 만약 이미 인스턴스가 있다면
-            {
-                Destroy(gameObject); // 이 객체를 삭제하며 인스턴스의 유일성 보장
-            }
+
+            _instance = this as T;
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

@@ -1,7 +1,5 @@
 using Game.Manager;
-using MyUtil;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // 플레이어와 관련된 기능들을 모아둔 네임스페이스
 namespace Game.Player
@@ -21,7 +19,9 @@ namespace Game.Player
         // 변수 초기화
         private void Awake()
         {
-            _inputHandle = new PlayerInputHandle();
+            GameManager.Instance.Player = gameObject;
+
+            _inputHandle = new PlayerInputHandle(this);
             _movement = new PlayerMovement(transform, _playerCamTrans, _moveSpeed);
         }
 
@@ -44,8 +44,8 @@ namespace Game.Player
         {
             if(InputManager.Instance != null)
             {
-                InputManager.Instance.WaitAndEnable(_disableDelay, false); // 인풋 비활성화
                 _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출
+                InputManager.Instance.WaitAndEnable(_disableDelay, false); // 인풋 비활성화
             }
         }
 
