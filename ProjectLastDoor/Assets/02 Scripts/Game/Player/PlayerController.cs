@@ -1,5 +1,6 @@
 using Game.Manager;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 플레이어와 관련된 기능들을 모아둔 네임스페이스
 namespace Game.Player
@@ -11,10 +12,15 @@ namespace Game.Player
         [SerializeField] private float _moveSpeed; // 이동 속도
         [SerializeField] private float _disableDelay; // 비활성화 대기 시간
         [SerializeField] private float _enableDelay; // 활성화 대기 시간
-        [SerializeField] private Transform _playerCamTrans;
+        [SerializeField] private float _rayDistance; // 레이 감지 거리
+
+        [SerializeField] private Transform _playerCamTrans; // 플레이어 카메라
+
+        [SerializeField] private Image _guideImage; // 상호작용 키 가이드 UI
 
         private PlayerInputHandle _inputHandle; // 인풋을 처리하는 클래스
         private PlayerMovement _movement; // 움직임을 처리하는 클래스
+        private PlayerInteractionRaycaster _interactionRaycast; // 상호작용을 처리하는 클래스
 
         // 변수 초기화
         private void Awake()
@@ -23,6 +29,7 @@ namespace Game.Player
 
             _inputHandle = new PlayerInputHandle(this);
             _movement = new PlayerMovement(transform, _playerCamTrans, _moveSpeed);
+            _interactionRaycast = new PlayerInteractionRaycaster(_playerCamTrans, _guideImage, _rayDistance);
         }
 
         // 객체 초기화
@@ -56,7 +63,15 @@ namespace Game.Player
 
             if (_inputHandle.IsInputActionCalling("Move")) // "Move" 인풋의 콜 여부 확인
                 _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
+
+            if(_interactionRaycast.IsOnInteractionObject()) // 상호작용 객체를 감지했으며
+            {
+                if(_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
+                {
+                    _interactionRaycast.PlayInteraction(); // 상호작용
+                }
+            }
         }
     }
 }
-// 마지막 작성 일자: 2025.05.21
+// 마지막 작성 일자: 2025.05.22

@@ -1,4 +1,5 @@
 using Game.Manager;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +32,8 @@ namespace Game.Player
             }
         }
 
+        public bool IsInteraction { get; private set; }
+
         // 생성자에서 MonoBehaviour 초기화
         public PlayerInputHandle(MonoBehaviour mono)
         {
@@ -46,8 +49,12 @@ namespace Game.Player
         {
             if(InputManager.Instance.GetInputAction("Move") != null)
                 InputManager.Instance.GetInputAction("Move").performed -= OnMove; // "Move" 액션 이벤트 구독 해제
+
             if (InputManager.Instance.GetInputAction("Look") != null)
                 InputManager.Instance.GetInputAction("Look").performed -= OnLook; // "Look" 액션 이벤트 구독 해제
+
+            if (InputManager.Instance.GetInputAction("Interaction") != null)
+                InputManager.Instance.GetInputAction("Interaction").performed -= OnInteraction; // "Interaction" 액션 이벤트 구독 해제
         }
 
         public bool IsInputActionCalling(string key) // 인풋이 계속 들어오고 있는지 확인하는 함수
@@ -65,6 +72,7 @@ namespace Game.Player
 
             InputManager.Instance.GetInputAction("Move").performed += OnMove; // "Move" 액션 이벤트 구독
             InputManager.Instance.GetInputAction("Look").performed += OnLook; // "Look" 액션 이벤트 구독
+            InputManager.Instance.GetInputAction("Interaction").performed += OnInteraction; // "Interaction" 액션 이벤트 구독
         }
 
         private void OnMove(InputAction.CallbackContext context) // PlayerInput에게 이동 벡터를 받는 함수
@@ -76,6 +84,11 @@ namespace Game.Player
         {
             _lookVector = context.ReadValue<Vector2>(); // Vector2로 읽어서 할당
         }
+
+        private void OnInteraction(InputAction.CallbackContext context) // PlayerInput에게 상호작용 여부를 받는 함수
+        {
+            IsInteraction = context.ReadValue<bool>(); // bool로 읽어서 할당
+        }
     }
 }
-// 마지막 작성 일자: 2025.05.21
+// 마지막 작성 일자: 2025.05.22
