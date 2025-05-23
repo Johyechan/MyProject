@@ -22,6 +22,11 @@ namespace Game.Player
         private PlayerMovement _movement; // 움직임을 처리하는 클래스
         private PlayerInteractionRaycaster _interactionRaycast; // 상호작용을 처리하는 클래스
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawRay(_playerCamTrans.position, _playerCamTrans.forward * _rayDistance);
+        }
+
         // 변수 초기화
         private void Awake()
         {
@@ -29,7 +34,7 @@ namespace Game.Player
 
             _inputHandle = new PlayerInputHandle(this);
             _movement = new PlayerMovement(transform, _playerCamTrans, _moveSpeed);
-            _interactionRaycast = new PlayerInteractionRaycaster(_playerCamTrans, _guideImage, _rayDistance);
+            _interactionRaycast = new PlayerInteractionRaycaster(_guideImage, _rayDistance);
         }
 
         // 객체 초기화
@@ -58,19 +63,24 @@ namespace Game.Player
 
         private void Update()
         {
+            if (_interactionRaycast.IsOnInteractionObject(GameManager.Instance.IsNeedMousePos)) // 상호작용 객체를 감지했으며
+            {
+                if (_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
+                {
+                    GameManager.Instance.IsInteractionOn = true; // 상호작용 중이라고 선언
+                    _inputHandle.IsInteraction = false; // 클릭 상태 초기화
+                    _interactionRaycast.PlayInteraction(); // 상호작용
+                }
+            }
+
+            if (GameManager.Instance.IsInteractionOn)
+                return;
+
             if (_inputHandle.IsInputActionCalling("Look")) // "Look" 인풋의 콜 여부 확인
                 _movement.Look(_inputHandle.LookVector); // 매 프레임마다 움직임 방향 바라보게 하는 함수 호출
 
             if (_inputHandle.IsInputActionCalling("Move")) // "Move" 인풋의 콜 여부 확인
                 _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
-
-            if(_interactionRaycast.IsOnInteractionObject()) // 상호작용 객체를 감지했으며
-            {
-                if(_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
-                {
-                    _interactionRaycast.PlayInteraction(); // 상호작용
-                }
-            }
         }
     }
 }

@@ -7,27 +7,28 @@ namespace Game.Player
 {
     // 작성자: 조혜찬
     // 상호작용을 처리하는 클래스
-    public class PlayerInteractionRaycaster : MonoBehaviour
+    public class PlayerInteractionRaycaster
     {
-        private Transform _playerCam; // 플레이어 카메라
-
         private Image _guideImage; // 뭘 클릭해야 상호작용 되는지 알려주는 가이드 사진
 
         private float _rayDistance; // 상호작용 객체 감지 거리
 
         private IInteraction _currentInteraction; // 현재 상호작용
 
-        public PlayerInteractionRaycaster(Transform playerCam, Image guideImage, float rayDistance)
+        public PlayerInteractionRaycaster(Image guideImage, float rayDistance)
         {
-            _playerCam = playerCam;
             _guideImage = guideImage;
             _rayDistance = rayDistance;
         }
 
         // 상호작용 객체 감지 여부 체크 함수
-        public bool IsOnInteractionObject()
+        public bool IsOnInteractionObject(bool needMousePos = false)
         {
-            Ray ray = new Ray(_playerCam.transform.position, _playerCam.transform.forward); // 플레이어 카메라에서 forward로 뻗는 형태의 레이
+            Ray ray;
+            if (!needMousePos) // 만약 마우스가 필요하지 않다면
+                ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); // 플레이어 카메라에서 forward로 뻗는 형태의 레이
+            else // 마우스 포지션이 필요하다면
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 마우스 커서 방향으로 레이
 
             if (Physics.Raycast(ray, out RaycastHit hit, _rayDistance, LayerMask.GetMask("Interaction"))) // 만약 상호작용이 되는 객체와 닿는다면
             {
@@ -51,7 +52,9 @@ namespace Game.Player
         // 상호작용 실행 함수
         public void PlayInteraction()
         {
+            Debug.Log(_currentInteraction);
             _currentInteraction.Interaction(); // 상호작용 함수 호출
+            _guideImage.gameObject.SetActive(false); // 가이드 사진 비활성화
         }
     }
 }

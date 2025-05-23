@@ -32,7 +32,7 @@ namespace Game.Player
             }
         }
 
-        public bool IsInteraction { get; private set; }
+        public bool IsInteraction { get; set; }
 
         // 생성자에서 MonoBehaviour 초기화
         public PlayerInputHandle(MonoBehaviour mono)
@@ -87,7 +87,7 @@ namespace Game.Player
 
         private void OnInteraction(InputAction.CallbackContext context) // PlayerInput에게 상호작용 여부를 받는 함수
         {
-            IsInteraction = context.ReadValue<bool>(); // bool로 읽어서 할당
+            IsInteraction = context.ReadValue<float>() == 1 ? true : false; // float으로 읽고 bool로 전환해서 할당
         }
     }
 }

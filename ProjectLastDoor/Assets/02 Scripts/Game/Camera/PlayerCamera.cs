@@ -2,7 +2,7 @@ using Game.Manager;
 using UnityEngine;
 
 // 카메라와 관련된 기능들을 모아둔 네임스페이스
-namespace Game.Camera
+namespace Game.MyCamera
 {
     // 작성자: 조혜찬
     // 플레이어 시점을 처리하는 카메라 클래스

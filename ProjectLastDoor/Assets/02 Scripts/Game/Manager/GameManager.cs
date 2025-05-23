@@ -13,12 +13,14 @@ namespace Game.Manager
 
         public float Sensitivity { get; set; } // 마우스 감도
 
-        public bool OnInteraction { get; set; } // 상호작용 여부
+        public bool IsInteractionOn { get; set; } // 상호작용 여부
+        public bool IsNeedMousePos { get; set; } // 레이를 쏠 때 마우스 커서 위치가 필요한지 여부
 
         public bool Initialize()
         {
             Sensitivity = 10f; // 감도 초기화
-            OnInteraction = false; // 상호작용 중이 아닌 상태
+            IsInteractionOn = false; // 상호작용 중 아님 선언
+            IsNeedMousePos = false; // 필요없음
 
             return true;
         }
