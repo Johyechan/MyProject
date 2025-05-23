@@ -13,12 +13,15 @@ namespace Game.Manager
 
         public float Sensitivity { get; set; } // 마우스 감도
 
+        public bool OnInteraction { get; set; } // 상호작용 여부
+
         public bool Initialize()
         {
             Sensitivity = 10f; // 감도 초기화
+            OnInteraction = false; // 상호작용 중이 아닌 상태
 
             return true;
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.23
