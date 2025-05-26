@@ -6,25 +6,28 @@ namespace Game.Player.FSM
 {
     // 작성자: 조혜찬
     // 움직임 및 시선 처리 상태
-    public class PlayerMoveAndLookState : IState
+    public class PlayerMoveAndLookState : PlayerStateBase
     {
-        // 들어왔을 때
-        public void OnEnter()
+        private PlayerInputHandle _inputHandle;
+        private PlayerMovement _movement;
+
+        public PlayerMoveAndLookState(PlayerInputHandle inputHandle, PlayerMovement movement)
         {
-            throw new System.NotImplementedException();
+            _inputHandle = inputHandle;
+            _movement = movement;
         }
 
         // 실행중일 때
-        public void OnExecute()
+        public override void OnExecute()
         {
-            throw new System.NotImplementedException();
-        }
+            base.OnExecute();
 
-        // 나갈 때
-        public void OnExit()
-        {
-            throw new System.NotImplementedException();
+            if (_inputHandle.IsInputActionCalling("Look")) // "Look" 인풋의 콜 여부 확인
+                _movement.Look(_inputHandle.LookVector); // 매 프레임마다 움직임 방향 바라보게 하는 함수 호출
+
+            if (_inputHandle.IsInputActionCalling("Move")) // "Move" 인풋의 콜 여부 확인
+                _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
         }
     }
 }
-// 마지막 작성 일자: 2025.05.23
+// 마지막 작성 일자: 2025.05.26

@@ -1,4 +1,6 @@
 using Game.Manager;
+using Game.Player.FSM;
+using MyUtil.FSM;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +24,12 @@ namespace Game.Player
         private PlayerMovement _movement; // 움직임을 처리하는 클래스
         private PlayerInteractionRaycaster _interactionRaycast; // 상호작용을 처리하는 클래스
 
+        private StateMachine _machine; // 상태 전이 머신
+
+        private IState _idleState; // 대기 상태
+        private IState _moveAndLookState; // 움직임 및, 시점 변경 가능 상태
+        private IState _interactionState; // 상호작용 중인 상태
+
         private void OnDrawGizmos()
         {
             Gizmos.DrawRay(_playerCamTrans.position, _playerCamTrans.forward * _rayDistance);
@@ -35,6 +43,15 @@ namespace Game.Player
             _inputHandle = new PlayerInputHandle(this);
             _movement = new PlayerMovement(transform, _playerCamTrans, _moveSpeed);
             _interactionRaycast = new PlayerInteractionRaycaster(_guideImage, _rayDistance);
+
+            _machine = new StateMachine();
+
+            _idleState = new PlayerIdleState();
+            _moveAndLookState = new PlayerMoveAndLookState(_inputHandle, _movement);
+            _interactionState = new PlayerInteractionState();
+
+            _machine.ChangeState(_idleState); // 첫 상태를 대기 상태로 지정
+            _machine.ChangeStateWhenDelayEnd(_moveAndLookState, 5f); // 일정 시간 후 움직임 및 시선 조정 가능 상태로 변경
         }
 
         // 객체 초기화
@@ -76,11 +93,7 @@ namespace Game.Player
             if (GameManager.Instance.IsInteractionOn)
                 return;
 
-            if (_inputHandle.IsInputActionCalling("Look")) // "Look" 인풋의 콜 여부 확인
-                _movement.Look(_inputHandle.LookVector); // 매 프레임마다 움직임 방향 바라보게 하는 함수 호출
-
-            if (_inputHandle.IsInputActionCalling("Move")) // "Move" 인풋의 콜 여부 확인
-                _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
+            _machine.UpdateExecute();
         }
     }
 }
