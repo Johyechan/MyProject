@@ -1,6 +1,7 @@
 using Game.Manager;
 using Game.Player.FSM;
 using MyUtil.FSM;
+using MyUtil.Transition;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,10 @@ namespace Game.Player
         private IState _idleState; // 대기 상태
         private IState _moveAndLookState; // 움직임 및, 시점 변경 가능 상태
         private IState _interactionState; // 상호작용 중인 상태
+
+        private ITransition _idleTransition; // 대기 상태 전이
+        private ITransition _moveAndLookTransition; // 움직임 및 시선 변경 가능 상태 전이
+        private ITransition _interactionTransition; // 상호작용 중인 상태 전이
 
         private void OnDrawGizmos()
         {
@@ -89,9 +94,6 @@ namespace Game.Player
                     _interactionRaycast.PlayInteraction(); // 상호작용
                 }
             }
-
-            if (GameManager.Instance.IsInteractionOn)
-                return;
 
             _machine.UpdateExecute();
         }
