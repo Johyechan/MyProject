@@ -4,15 +4,15 @@ using UnityEngine;
 namespace Game.Player
 {
     // 작성자: 조혜찬
-    // 플레이어의 움직임을 처리하는 클래스
-    public class PlayerMovement
+    // 플레이어의 행동을 처리하는 클래스
+    public class PlayerAct
     {
         private Transform _playerTrans; // 플레이어의 Transform
         private Transform _playerCamTrans; // 플레이어의 눈 역할을 하는 카메라 Transform
         private float _moveSpeed; // 이동 속도
 
         // 생성자에서 변수 초기화
-        public PlayerMovement(Transform playerTrans, Transform playerCamTrans, float moveSpeed)
+        public PlayerAct(Transform playerTrans, Transform playerCamTrans, float moveSpeed)
         {
             _playerTrans = playerTrans;
             _playerCamTrans = playerCamTrans;
@@ -37,4 +37,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.21
+// 마지막 작성 일자: 2025.05.27

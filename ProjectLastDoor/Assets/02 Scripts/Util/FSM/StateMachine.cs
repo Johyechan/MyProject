@@ -32,6 +32,13 @@ namespace MyUtil.FSM
             _delayTime = delay;
         }
 
+        public bool IsCurrentState(IState state)
+        {
+            if (_currentState == state) return true;
+
+            return false;
+        }
+
         // 매 프레임마다 반복할 현재 상태 실행중 기능
         public void UpdateExecute()
         {
@@ -49,4 +56,4 @@ namespace MyUtil.FSM
         }
     }
 }
-
+// 마지막 작성 일자: 2025.05.27

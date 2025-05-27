@@ -44,7 +44,7 @@ namespace Game.Manager
         }
 
         // 인풋 에셋 활성화 여부 결정 함수
-        public void WaitAndEnable(float delay, bool IsEnable)
+        public void WaitAndEnable(bool IsEnable, float delay = 0)
         {
             StartCoroutine(WaitAndEnableCo(delay, IsEnable));
         }

@@ -1,3 +1,4 @@
+using Game.Manager;
 using UnityEngine;
 
 namespace Game.Player
@@ -14,15 +15,21 @@ namespace Game.Player
         // 객체 초기화
         private void Start()
         {
-            _machine.ChangeState(_idleState); // 첫 상태를 대기 상태로 지정
+            _machine.ChangeState(_startState); // 첫 상태를 대기 상태로 지정
         }
 
         private void Update()
         {
-            _transitionHandle.CheckTransition();
+            _transitionHandle.CheckTransition(); // 상태 전이 조건 확인
 
-            _machine.UpdateExecute();
+            _machine.UpdateExecute(); // 현재 상태의 실행되어야 할 코드 실행
+        }
+
+        // 대기 상태 애니메이션이 종료되면 호출될 애니메이션 함수
+        private void OnAnimationEnd()
+        {
+            IsStart = false;
         }
     }
 }
-// 마지막 작성 일자: 2025.05.22
+// 마지막 작성 일자: 2025.05.27

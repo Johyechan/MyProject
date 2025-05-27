@@ -7,30 +7,19 @@ namespace Game.Player.Transition
     // 플레이어 상호장용 중인 상태로 전이하는 클래스
     public class PlayerInteractionTransition : PlayerTransitionBase
     {
-        private PlayerInteractionRaycaster _interactionRaycaster;
-        private PlayerInputHandle _inputHandle;
-
-        public PlayerInteractionTransition(StateMachine machine, IState state, PlayerInteractionRaycaster interactionRaycaster, PlayerInputHandle inputHandle) : base(machine, state)
+        public PlayerInteractionTransition(StateMachine machine, IState state) : base(machine, state)
         {
-            _interactionRaycaster = interactionRaycaster;
-            _inputHandle = inputHandle;
         }
 
         public override bool IsTransition()
         {
-            if (_interactionRaycaster.IsOnInteractionObject(GameManager.Instance.IsNeedMousePos)) // 상호작용 객체를 감지했으며
+            if(GameManager.Instance.IsInteractionOn) // 만약 상호작용이 되었다면
             {
-                if (_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
-                {
-                    GameManager.Instance.IsInteractionOn = true; // 상호작용 중이라고 선언
-                    _inputHandle.IsInteraction = false; // 클릭 상태 초기화
-                    _interactionRaycaster.PlayInteraction(); // 상호작용
-                    ChangeState();
-                    return true;
-                }
+                ChangeState(); // 상태 전이
+                return true; // 상호작용 중인 상태로 전이 했다 또는 상호작용중인 상태여야 한다고 반환
             }
 
-            return false;
+            return false; // 상호작용 중인 상태로 전이하지 않았다고 반환
         }
     }
 }
