@@ -1,7 +1,6 @@
 using Game.Manager;
 using UnityEngine;
 
-// 상호작용 객체 기능들을 모아둔 네임스페이스
 namespace Game.InteractionObject
 {
     // 자물쇠의 상호작용을 처리하는 클래스

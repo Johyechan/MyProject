@@ -1,7 +1,6 @@
 using MyUtil.FSM;
 using UnityEngine;
 
-// 플레이어 FSM 네임스페이스
 namespace Game.Player.FSM
 {
     // 작성자: 조혜찬

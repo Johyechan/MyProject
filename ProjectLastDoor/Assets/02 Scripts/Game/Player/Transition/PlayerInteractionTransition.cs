@@ -1,16 +1,36 @@
-using MyUtil.Transition;
-using UnityEngine;
+using Game.Manager;
+using MyUtil.FSM;
 
-// 플레이어 전이 네임스페이스
 namespace Game.Player.Transition
 {
     // 작성자: 조혜찬
     // 플레이어 상호장용 중인 상태로 전이하는 클래스
-    public class PlayerInteractionTransition : ITransition
+    public class PlayerInteractionTransition : PlayerTransitionBase
     {
-        public bool IsTransition()
+        private PlayerInteractionRaycaster _interactionRaycaster;
+        private PlayerInputHandle _inputHandle;
+
+        public PlayerInteractionTransition(StateMachine machine, IState state, PlayerInteractionRaycaster interactionRaycaster, PlayerInputHandle inputHandle) : base(machine, state)
         {
-            throw new System.NotImplementedException();
+            _interactionRaycaster = interactionRaycaster;
+            _inputHandle = inputHandle;
+        }
+
+        public override bool IsTransition()
+        {
+            if (_interactionRaycaster.IsOnInteractionObject(GameManager.Instance.IsNeedMousePos)) // 상호작용 객체를 감지했으며
+            {
+                if (_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
+                {
+                    GameManager.Instance.IsInteractionOn = true; // 상호작용 중이라고 선언
+                    _inputHandle.IsInteraction = false; // 클릭 상태 초기화
+                    _interactionRaycaster.PlayInteraction(); // 상호작용
+                    ChangeState();
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

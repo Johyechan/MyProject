@@ -1,7 +1,6 @@
 using Game.Manager;
 using UnityEngine;
 
-// 카메라와 관련된 기능들을 모아둔 네임스페이스
 namespace Game.MyCamera
 {
     // 작성자: 조혜찬

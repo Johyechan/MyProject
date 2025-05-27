@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// 유틸리티 기능들을 모아둔 네임스페이스
 namespace MyUtil
 {
     // 작성자: 조혜찬

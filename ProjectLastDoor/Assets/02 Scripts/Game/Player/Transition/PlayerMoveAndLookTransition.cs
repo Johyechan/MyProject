@@ -1,14 +1,16 @@
-using MyUtil.Transition;
-using UnityEngine;
+using MyUtil.FSM;
 
-// 플레이어 전이 네임스페이스
 namespace Game.Player.Transition
 {
     // 작성자: 조혜찬
     // 플레이어 이동 및 시선 상태로 전이하는 클래스
-    public class PlayerMoveAndLookTransition : ITransition
+    public class PlayerMoveAndLookTransition : PlayerTransitionBase
     {
-        public bool IsTransition()
+        public PlayerMoveAndLookTransition(StateMachine machine, IState state) : base(machine, state)
+        {
+        }
+
+        public override bool IsTransition()
         {
             throw new System.NotImplementedException();
         }

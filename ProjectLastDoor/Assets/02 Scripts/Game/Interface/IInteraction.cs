@@ -1,6 +1,3 @@
-using UnityEngine;
-
-// 인터페이스들을 모아둔 네임스페이스
 namespace Game.Interface
 {
     // 작성자: 조혜찬

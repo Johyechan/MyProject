@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 
-// 상호작용 객체 기능들을 모아둔 네임스페이스
 namespace Game.InteractionObject
 {
     // 작성자: 조혜찬

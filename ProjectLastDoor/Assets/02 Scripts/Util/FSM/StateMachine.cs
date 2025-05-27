@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// FSM 네임스페이스
 namespace MyUtil.FSM
 {
     // 작성자: 조혜찬

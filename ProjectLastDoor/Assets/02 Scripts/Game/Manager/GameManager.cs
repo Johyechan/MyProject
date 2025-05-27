@@ -2,7 +2,6 @@ using Game.Interface;
 using MyUtil;
 using UnityEngine;
 
-// 매니저들을 모아둔 네임스페이스
 namespace Game.Manager
 {
     // 작성자: 조혜찬

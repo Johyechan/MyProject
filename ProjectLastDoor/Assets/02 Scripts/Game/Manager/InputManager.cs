@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// 매니저들을 모아둔 네임스페이스
 namespace Game.Manager
 {
     // 작성자: 조혜찬

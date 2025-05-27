@@ -1,6 +1,3 @@
-using UnityEngine;
-
-// Transition 네임스페이스
 namespace MyUtil.Transition
 {
     // 작성자: 조혜찬

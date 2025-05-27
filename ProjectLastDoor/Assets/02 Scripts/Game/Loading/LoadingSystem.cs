@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// 로딩과 관련된 기능들을 모아둔 네임스페이스
 namespace Game.Loading
 {
     // 작성자: 조혜찬

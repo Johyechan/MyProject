@@ -1,7 +1,6 @@
 using Game.Manager;
 using UnityEngine;
 
-// 플레이어와 관련된 기능들을 모아둔 네임스페이스
 namespace Game.Player
 {
     // 작성자: 조혜찬

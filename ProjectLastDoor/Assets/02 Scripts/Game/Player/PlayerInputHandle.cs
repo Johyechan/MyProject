@@ -1,10 +1,8 @@
 using Game.Manager;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// 플레이어와 관련된 기능들을 모아둔 네임스페이스
 namespace Game.Player
 {
     // 작성자: 조혜찬
@@ -16,21 +14,9 @@ namespace Game.Player
         private Vector2 _moveVector; // 플레이어 이동 벡터를 받는 변수
         private Vector2 _lookVector; // 플레이어 방향 벡터를 받는 변수
 
-        public Vector2 MoveVector // 플레이어 이동 벡터 프로퍼티
-        {
-            get
-            {
-                return _moveVector;
-            }
-        }
+        public Vector2 MoveVector { get { return _moveVector; } } // 플레이어 이동 벡터 프로퍼티
 
-        public Vector2 LookVector // 플레이어 방향 벡터 프로퍼티
-        {
-            get
-            {
-                return _lookVector;
-            }
-        }
+        public Vector2 LookVector { get { return _lookVector; } }// 플레이어 방향 벡터 프로퍼티
 
         public bool IsInteraction { get; set; }
 

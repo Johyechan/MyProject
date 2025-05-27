@@ -1,7 +1,5 @@
-using MyUtil.FSM;
-using UnityEngine;
+using Game.Manager;
 
-// 플레이어 FSM 네임스페이스
 namespace Game.Player.FSM
 {
     // 작성자: 조혜찬
@@ -17,6 +15,17 @@ namespace Game.Player.FSM
             _movement = movement;
         }
 
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            if (InputManager.Instance != null)
+            {
+                InputManager.Instance.WaitAndEnable(_enableDelay, true); // 인풋 활성화
+                _inputHandle.OnEnable(); // 인풋 핸들의 활성화 함수 호출
+            }
+        }
+
         // 실행중일 때
         public override void OnExecute()
         {
@@ -27,6 +36,17 @@ namespace Game.Player.FSM
 
             if (_inputHandle.IsInputActionCalling("Move")) // "Move" 인풋의 콜 여부 확인
                 _movement.Move(_inputHandle.MoveVector); // 매 프레임마다 움직임 함수 호출
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            if (InputManager.Instance != null)
+            {
+                _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출
+                InputManager.Instance.WaitAndEnable(_disableDelay, false); // 인풋 비활성화
+            }
         }
     }
 }
