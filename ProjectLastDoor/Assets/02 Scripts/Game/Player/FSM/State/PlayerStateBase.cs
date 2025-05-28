@@ -12,17 +12,17 @@ namespace Game.Player.FSM
         public virtual void OnEnter()
         {
             _name = GetType().Name;
-            Debug.Log($"{_name} 상태로 들어옴");
+            //Debug.Log($"{_name} 상태로 들어옴");
         }
 
         public virtual void OnExecute()
         {
-            Debug.Log($"{_name} 실행 중");
+            //Debug.Log($"{_name} 실행 중");
         }
 
         public virtual void OnExit()
         {
-            Debug.Log($"{_name} 상태 나감");
+            //Debug.Log($"{_name} 상태 나감");
         }
     }
 }
