@@ -24,8 +24,9 @@ namespace Game.Player.FSM
 
             if (InputManager.Instance != null)
             {
-                InputManager.Instance.WaitAndEnable(true); // 인풋 활성화
-                _inputHandle.OnEnable(); // 인풋 핸들의 활성화 함수 호출
+                InputManager.Instance.InputSetEnable("Move", false, true); // 움직임 활성화
+                InputManager.Instance.InputSetEnable("Look", false, true); // 시선 조정 활성화
+                InputManager.Instance.InputSetEnable("Interaction", false, true); // 상호작용 활성화
             }
         }
 
@@ -38,7 +39,6 @@ namespace Game.Player.FSM
             {
                 if (_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
                 {
-                    Debug.Log("상호작용");
                     GameManager.Instance.IsInteractionOn = true; // 상호작용 중이라고 선언
                     _inputHandle.IsInteraction = false; // 클릭 상태 초기화
 
@@ -57,13 +57,12 @@ namespace Game.Player.FSM
         {
             base.OnExit();
 
-            // 여기서 완전히 꺼버려서 문제 이건 Disable로 옮기고 여기서는 wasd + 마우스 커서 인풋 액션만 비활성화 시키면 됨
             if (InputManager.Instance != null)
             {
-                _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출
-                InputManager.Instance.WaitAndEnable(false); // 인풋 비활성화
+                InputManager.Instance.InputSetEnable("Move", false, false); // 움직임 비활성화
+                InputManager.Instance.InputSetEnable("Look", false, false); // 시선 조정 비활성화
             }
         }
     }
 }
-// 마지막 작성 일자: 2025.05.27
+// 마지막 작성 일자: 2025.05.28

@@ -126,3 +126,4 @@ MonoBehaviour:
   _playerCam: {fileID: 0}
   _isCorrectAnswer: 0
   _animationTime: 1
+  _material: {fileID: 2100000, guid: f31fb7d5d3ebe3544b9c9a8a6eabc700, type: 2}

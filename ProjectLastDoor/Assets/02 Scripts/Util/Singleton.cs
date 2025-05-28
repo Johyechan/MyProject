@@ -14,7 +14,7 @@ namespace MyUtil
             {
                 if(_instance == null) // 만약 인스턴스가 null 이라면
                 {
-                    Debug.Log("Instance is null");
+                    return null;
                 }
 
                 return _instance; // 인스턴스 반환

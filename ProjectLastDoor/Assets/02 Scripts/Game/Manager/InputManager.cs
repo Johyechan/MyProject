@@ -43,30 +43,21 @@ namespace Game.Manager
             IsInitialized = true;
         }
 
-        // 인풋 에셋 활성화 여부 결정 함수
-        public void WaitAndEnable(bool IsEnable, float delay = 0)
+        private void OnEnable()
         {
-            StartCoroutine(WaitAndEnableCo(delay, IsEnable));
+            _myGameInputAsset.Enable();
         }
 
-        // n초 후 인풋 에셋 활성화 여부 결정 코루틴
-        private IEnumerator WaitAndEnableCo(float delay, bool IsEnable)
+        private void OnDisable()
         {
-            yield return new WaitForSeconds(delay); // n초 후
-
-            if (IsEnable) // 활성화라면
-                _myGameInputAsset.Enable(); // 활성화
-            else // 비활성화라면
-                _myGameInputAsset.Disable();
+            _myGameInputAsset.Disable();
         }
 
         // 원하는 액션을 부르는 함수
         public InputAction GetInputAction(string key)
         {
             if(_inputActions.TryGetValue(key, out InputAction action))
-            {
                 return action;
-            }
 
             Debug.LogWarning($"InputAction {key} not found");
             return null;
@@ -80,13 +71,9 @@ namespace Game.Manager
                 if (_inputActionMaps.TryGetValue(key, out InputActionMap map)) // 인풋 맵 딕셔너리 내 key값이 존재한다면 맵을 out
                 {
                     if (IsEnable) // 활성화라면
-                    {
                         map.Enable(); // 맵 활성화
-                    }
                     else // 아니라면
-                    {
                         map.Disable(); // 맵 비활성화
-                    }
                 }
             }
             else // 액션의 활성화 여부를 결정하는 것이라면
@@ -94,18 +81,12 @@ namespace Game.Manager
                 if (_inputActions.TryGetValue(key, out InputAction action)) // 인풋 액션 딕셔너리 내 key값이 존재한다면 액션을 out
                 {
                     if (IsEnable) // 활성화라면
-                    {
                         action.Enable(); // 액션 활성화
-                    }
                     else // 아니라면
-                    {
                         action.Disable(); // 액션 비활성화
-                    }
                 }
             }
-
-            Debug.LogWarning($"InputActionMap {key} not Found");
         }
     }
 }
-// 마지막 작성 일자: 2025.05.20
+// 마지막 작성 일자: 2025.05.28

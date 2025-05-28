@@ -16,15 +16,13 @@ namespace Game.InteractionObject
         private void Awake()
         {
             _lockInteraction = transform.parent.GetComponent<LockInteraction>(); // 부모, 즉 자물쇠 클래스 가져오기
-            _material = GetComponent<Material>(); // 실패와 성공에 따라 버튼의 색 변경을 위한 변수
+            _material = GetComponent<Renderer>().material; // 실패와 성공에 따라 버튼의 색 변경을 위한 변수
         }
 
         public override void Interaction()
         {
-            Debug.Log("버튼?");
             if(_lockInteraction.IsLockInteractionOn) // 만약 자물쇠가 상호작용 되어있다면 (그냥 버튼이 눌리는 상황을 방지)
             {
-                Debug.Log("버튼 눌림");
                 if(!_isCorrectAnswer) // 만약 이 버튼이 올바른 버튼이 아니었을 경우
                 {
                     Sequence sequence = DOTween.Sequence(); // 시퀀스 생성
@@ -37,7 +35,7 @@ namespace Game.InteractionObject
                 // 만약 올바른 버튼이었다면
                 Sequence sequncen = DOTween.Sequence(); // 시퀀스 생성
                 sequncen.Append(_material.DOColor(Color.green, _animationTime)); // 버튼 색을 초록색으로 변경
-                _lockInteraction.SuccessCount++; // 성공 개수 증가
+                sequncen.AppendCallback(() => _lockInteraction.SuccessCount++); // 성공 개수 증가
             }
         }
     }
