@@ -21,8 +21,10 @@ namespace Game.InteractionObject
 
         public override void Interaction()
         {
+            Debug.Log("버튼?");
             if(_lockInteraction.IsLockInteractionOn) // 만약 자물쇠가 상호작용 되어있다면 (그냥 버튼이 눌리는 상황을 방지)
             {
+                Debug.Log("버튼 눌림");
                 if(!_isCorrectAnswer) // 만약 이 버튼이 올바른 버튼이 아니었을 경우
                 {
                     Sequence sequence = DOTween.Sequence(); // 시퀀스 생성

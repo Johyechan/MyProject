@@ -1,4 +1,5 @@
 using Game.Interface;
+using Game.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,8 @@ namespace Game.Player
 
             if (Physics.Raycast(ray, out RaycastHit hit, _rayDistance, LayerMask.GetMask("Interaction"))) // 만약 상호작용이 되는 객체와 닿는다면
             {
+                Debug.Log(hit.collider);
+                GameManager.Instance.IsInteractionObjectFind = true; // 상호작용 가능 오브젝트를 감지 함
                 _guideImage.gameObject.SetActive(true); // 가이드 사진 활성화
 
                 if (hit.transform.TryGetComponent(out IInteraction interaction)) // 상호작용 인터페이스를 가져올 수 있는지 확인
@@ -42,6 +45,7 @@ namespace Game.Player
             }
             else // 아니라면
             {
+                GameManager.Instance.IsInteractionObjectFind = false; // 상호작용 가능 오브젝트를 감지 못함
                 _guideImage.gameObject.SetActive(false); // 가이드 사진 비활성화
 
                 return false; // 상호작용 객체 감지 못함 반환
@@ -51,7 +55,7 @@ namespace Game.Player
         // 상호작용 실행 함수
         public void PlayInteraction()
         {
-            Debug.Log(_currentInteraction);
+            Debug.Log($"상호작용: {_currentInteraction}");
             _currentInteraction.Interaction(); // 상호작용 함수 호출
             _guideImage.gameObject.SetActive(false); // 가이드 사진 비활성화
         }

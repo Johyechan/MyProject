@@ -1,4 +1,5 @@
 using Game.Manager;
+using UnityEngine;
 
 namespace Game.Player.FSM
 {
@@ -37,6 +38,7 @@ namespace Game.Player.FSM
             {
                 if (_inputHandle.IsInteraction) // 상호작용 키를 눌렀다면
                 {
+                    Debug.Log("상호작용");
                     GameManager.Instance.IsInteractionOn = true; // 상호작용 중이라고 선언
                     _inputHandle.IsInteraction = false; // 클릭 상태 초기화
 
@@ -55,6 +57,7 @@ namespace Game.Player.FSM
         {
             base.OnExit();
 
+            // 여기서 완전히 꺼버려서 문제 이건 Disable로 옮기고 여기서는 wasd + 마우스 커서 인풋 액션만 비활성화 시키면 됨
             if (InputManager.Instance != null)
             {
                 _inputHandle.OnDisable(); // 인풋 핸들의 비활성화 함수 호출

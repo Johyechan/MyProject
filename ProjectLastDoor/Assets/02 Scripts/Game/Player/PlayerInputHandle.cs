@@ -73,8 +73,13 @@ namespace Game.Player
 
         private void OnInteraction(InputAction.CallbackContext context) // PlayerInput에게 상호작용 여부를 받는 함수
         {
-            IsInteraction = context.ReadValue<float>() == 1 ? true : false; // float으로 읽고 bool로 전환해서 할당
+            Debug.Log("On Click");
+            if(GameManager.Instance.IsInteractionObjectFind) // 상호작용 가능한 오브젝트를 찾았을 때만 인풋 받기
+            {
+                IsInteraction = context.ReadValue<float>() == 1 ? true : false; // float으로 읽고 bool로 전환해서 할당
+                Debug.Log(IsInteraction);
+            }
         }
     }
 }
-// 마지막 작성 일자: 2025.05.22
+// 마지막 작성 일자: 2025.05.28
