@@ -33,6 +33,9 @@ namespace Game.Player
 
         public void OnDisable()
         {
+            if (InputManager.Instance == null)
+                return;
+
             if(InputManager.Instance.GetInputAction("Move") != null)
                 InputManager.Instance.GetInputAction("Move").performed -= OnMove; // "Move" 액션 이벤트 구독 해제
 

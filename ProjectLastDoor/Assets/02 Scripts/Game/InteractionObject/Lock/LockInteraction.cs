@@ -19,6 +19,8 @@ namespace Game.InteractionObject
 
         [SerializeField] private int _successGoal;
 
+        private List<GameObject> _buttons = new List<GameObject>(); // 자물쇠 오브젝트의 자식들(자물쇠 버튼)
+
         private IState _idleState;
         private IState _waitState;
         private IState _successState;
@@ -33,8 +35,13 @@ namespace Game.InteractionObject
         {
             base.Awake();
 
-            _idleState = new LockIdleState(this);
-            _waitState = new LockWaitState(this);
+            for (int i = 0; i < transform.childCount; i++) // 자식 순회
+            {
+                _buttons.Add(transform.GetChild(i).gameObject); // 자식 추가
+            }
+
+            _idleState = new LockIdleState(this, _buttons);
+            _waitState = new LockWaitState(this, _buttons);
             _successState = new LockSuccessState(this);
             _failedState = new LockFailedState(this);
 
@@ -50,14 +57,6 @@ namespace Game.InteractionObject
                 _failedTransition,
                 _waitTransition
             });
-        }
-
-        protected override void Update()
-        {
-            if (!IsLockInteractionOn) // 상호작용 중이 아니라면
-                return; // 반환
-
-            base.Update();
         }
 
         // 상호작용 함수
