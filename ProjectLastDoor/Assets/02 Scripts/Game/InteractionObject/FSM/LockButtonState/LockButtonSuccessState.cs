@@ -14,7 +14,6 @@ namespace Game.InteractionObject.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("success");
 
             Sequence sequncen = DOTween.Sequence(); // 시퀀스 생성
             sequncen.Append(_material.DOColor(Color.green, _animationTime)); // 버튼 색을 초록색으로 변경

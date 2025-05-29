@@ -16,7 +16,7 @@ namespace Game.InteractionObject.FSM
 
         public virtual void OnEnter()
         {
-            Debug.Log($"{GetType().Name} 실행");
+            Debug.Log($"{GetType().Name} 실행 시작");
         }
 
         public virtual void OnExecute()

@@ -61,7 +61,7 @@ namespace Game.InteractionObject
             {
                 if(!_isCorrectAnswer) // 만약 이 버튼이 올바른 버튼이 아니었을 경우
                 {
-                    IsSuccess = false;
+                    IsFailed = true;
                     return; // 그리고 종료
                 }
 
