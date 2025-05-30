@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Game.InteractionObject
 {
     // 자물쇠의 상호작용을 처리하는 클래스
-    public class LockInteraction : InteractionObjectBase
+    public class PushButtonLock : InteractionObjectBase
     {
         public bool IsLockInteractionOn { get; set; } // 자물쇠 상호작용이 되었는지 여부
 

@@ -6,7 +6,7 @@ namespace Game.InteractionObject.FSM
     // 상호작용 되지 않은 상태
     public class LockButtonIdleState : LockButtonStateBase
     {
-        public LockButtonIdleState(Material material, float animationTime, LockInteraction lockInteraction) : base(material, animationTime, lockInteraction)
+        public LockButtonIdleState(Material material, float animationTime, PushButtonLock pushButtonLock) : base(material, animationTime, pushButtonLock)
         {
         }
     }

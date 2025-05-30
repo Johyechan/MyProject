@@ -18,7 +18,7 @@ namespace Game.InteractionObject
         public bool IsSuccess { get; set; } // 성공 여부 체크 변수
         public bool IsFailed { get; set; } // 실패 여부 체크 변수
 
-        private LockInteraction _lockInteraction; // 부모(자물쇠) 클래스
+        private PushButtonLock _pushButtonLock; // 부모(자물쇠) 클래스
         private Material _material; // 버튼의 색을 변경하기 위한 변수
 
         private IState _idleState; // 상호작용 되지 않은 상태
@@ -33,12 +33,12 @@ namespace Game.InteractionObject
         {
             base.Awake();
 
-            _lockInteraction = transform.parent.GetComponent<LockInteraction>(); // 부모, 즉 자물쇠 클래스 가져오기
+            _pushButtonLock = transform.parent.GetComponent<PushButtonLock>(); // 부모, 즉 자물쇠 클래스 가져오기
             _material = GetComponent<Renderer>().material; // 실패와 성공에 따라 버튼의 색 변경을 위한 변수
 
-            _idleState = new LockButtonIdleState(_material, _animationTime, _lockInteraction); // 상호작용 되지 않은 상태 
-            _successState = new LockButtonSuccessState(_material, _animationTime, _lockInteraction); // 성공 버튼 상태
-            _failedState = new LockButtonFailedState(_material, _animationTime, _lockInteraction); // 실패 버튼 상태
+            _idleState = new LockButtonIdleState(_material, _animationTime, _pushButtonLock); // 상호작용 되지 않은 상태 
+            _successState = new LockButtonSuccessState(_material, _animationTime, _pushButtonLock); // 성공 버튼 상태
+            _failedState = new LockButtonFailedState(_material, _animationTime, _pushButtonLock); // 실패 버튼 상태
 
             _idleTransition = new LockButtonIdleTransition(_machine, _idleState, this); // 상호작용 되지 않은 상태로 전이
             _successTransition = new LockButtonSuccessTransition(_machine, _successState, this); // 성공 버튼 상태로 전이
@@ -57,7 +57,7 @@ namespace Game.InteractionObject
 
         public override void Interaction()
         {
-            if(_lockInteraction.IsLockInteractionOn) // 만약 자물쇠가 상호작용 되어있다면 (그냥 버튼이 눌리는 상황을 방지)
+            if(_pushButtonLock.IsLockInteractionOn) // 만약 자물쇠가 상호작용 되어있다면 (그냥 버튼이 눌리는 상황을 방지)
             {
                 if(!_isCorrectAnswer) // 만약 이 버튼이 올바른 버튼이 아니었을 경우
                 {
@@ -71,4 +71,4 @@ namespace Game.InteractionObject
         }
     }
 }
-// 마지막 작성 일자: 2025.05.23
+// 마지막 작성 일자: 2025.05.30

@@ -26,7 +26,8 @@ namespace Game.InteractionObject
 
         protected virtual void Update()
         {
-            if (_transitionHandle.CheckTransition()) return;
+            if(_transitionHandle != null)
+                if (_transitionHandle.CheckTransition()) return;
 
             _machine.UpdateExecute();
         }

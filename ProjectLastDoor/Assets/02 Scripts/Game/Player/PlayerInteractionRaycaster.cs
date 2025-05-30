@@ -30,25 +30,23 @@ namespace Game.Player
             else // 마우스 포지션이 필요하다면
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 마우스 커서 방향으로 레이
 
-            if (Physics.Raycast(ray, out RaycastHit hit, _rayDistance, LayerMask.GetMask("Interaction"))) // 만약 상호작용이 되는 객체와 닿는다면
+            if (Physics.Raycast(ray, out RaycastHit hit, _rayDistance)) // 만약 객체와 닿는다면
             {
-                GameManager.Instance.IsInteractionObjectFind = true; // 상호작용 가능 오브젝트를 감지 함
-                _guideImage.gameObject.SetActive(true); // 가이드 사진 활성화
-
-                if (hit.transform.TryGetComponent(out IInteraction interaction)) // 상호작용 인터페이스를 가져올 수 있는지 확인
+                if (hit.transform.TryGetComponent(out IInteraction interaction)) // 상호작용 인터페이스를 가져올 수 있는지(상호작용이 되는 객체인지) 확인
                 {
+                    GameManager.Instance.IsInteractionObjectFind = true; // 상호작용 가능 오브젝트를 감지 함
+                    _guideImage.gameObject.SetActive(true); // 가이드 사진 활성화
                     _currentInteraction = interaction; // 현재 상호작용 갱신
+                    return true; // 상호작용 객체 감지 함 반환
                 }
 
-                return true; // 상호작용 객체 감지 함 반환
-            }
-            else // 아니라면
-            {
                 GameManager.Instance.IsInteractionObjectFind = false; // 상호작용 가능 오브젝트를 감지 못함
                 _guideImage.gameObject.SetActive(false); // 가이드 사진 비활성화
 
                 return false; // 상호작용 객체 감지 못함 반환
             }
+
+            return false; // 객체와도 닿지 못했다면 똑같이 상호작용 객체 감지 못함 반환
         }
 
         // 상호작용 실행 함수

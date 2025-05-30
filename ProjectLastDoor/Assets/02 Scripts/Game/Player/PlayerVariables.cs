@@ -41,9 +41,12 @@ namespace Game.Player
 
         public bool IsStart { get; protected set; } // 시작(처음 플레이어가 깨어난 시점) 상태인지 확인하는 변수
 
+        public HashSet<int> KeyNumbers { get; set; } // 플레이어가 획득한 열쇠(고유번호를 가짐)
+
         // 변수 초기화
         protected virtual void Awake()
         {
+            KeyNumbers = new HashSet<int>();
             GameManager.Instance.Player = gameObject; // 게임 매니저의 Player를 자기자신으로 지정
             IsStart = true;
 
@@ -71,4 +74,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.27
+// 마지막 작성 일자: 2025.05.30

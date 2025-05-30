@@ -7,7 +7,7 @@ namespace Game.InteractionObject.FSM
     // 맞는 버튼인 상태
     public class LockButtonSuccessState : LockButtonStateBase
     {
-        public LockButtonSuccessState(Material material, float animationTime, LockInteraction lockInteraction) : base(material, animationTime, lockInteraction)
+        public LockButtonSuccessState(Material material, float animationTime, PushButtonLock pushButtonLock) : base(material, animationTime, pushButtonLock)
         {
         }
 
@@ -17,7 +17,7 @@ namespace Game.InteractionObject.FSM
 
             Sequence sequncen = DOTween.Sequence(); // 시퀀스 생성
             sequncen.Append(_material.DOColor(Color.green, _animationTime)); // 버튼 색을 초록색으로 변경
-            sequncen.AppendCallback(() => _lockInteraction.SuccessCount++); // 성공 개수 증가
+            sequncen.AppendCallback(() => _pushButtonLock.SuccessCount++); // 성공 개수 증가
         }
     }
 }

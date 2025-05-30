@@ -11,13 +11,13 @@ namespace Game.InteractionObject.FSM
 
         protected float _animationTime;
 
-        protected LockInteraction _lockInteraction;
+        protected PushButtonLock _pushButtonLock;
 
-        public LockButtonStateBase(Material material, float animationTime, LockInteraction lockInteraction)
+        public LockButtonStateBase(Material material, float animationTime, PushButtonLock pushButtonLock)
         {
             _material = material;
             _animationTime = animationTime;
-            _lockInteraction = lockInteraction;
+            _pushButtonLock = pushButtonLock;
         }
 
         public virtual void OnEnter()

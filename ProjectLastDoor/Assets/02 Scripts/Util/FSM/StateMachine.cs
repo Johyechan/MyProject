@@ -42,7 +42,9 @@ namespace MyUtil.FSM
         // 매 프레임마다 반복할 현재 상태 실행중 기능
         public void UpdateExecute()
         {
-            if(_isDelay) // 대기 후 변경하는 상태일 때
+            if (_currentState == null) return; // 현재 상태가 없다면 그냥 반환
+
+            if (_isDelay) // 대기 후 변경하는 상태일 때
             {
                 _currentTime += Time.deltaTime; // 시간 축적
 

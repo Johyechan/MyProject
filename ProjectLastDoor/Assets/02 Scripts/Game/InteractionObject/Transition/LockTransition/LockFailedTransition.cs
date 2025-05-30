@@ -8,13 +8,13 @@ namespace Game.InteractionObject.Transition
     // 자물쇠를 못 푼 실패 상태로 전이
     public class LockFailedTransition : LockTransitionBase
     {
-        public LockFailedTransition(StateMachine machine, IState changeState, LockInteraction lockInteraction) : base(machine, changeState, lockInteraction)
+        public LockFailedTransition(StateMachine machine, IState changeState, PushButtonLock pushButtonLock) : base(machine, changeState, pushButtonLock)
         {
         }
 
         public override bool IsTransition()
         {
-            if(_lockInteraction.IsFailed) // 실패라면
+            if(_pushButtonLock.IsFailed) // 실패라면
             {
                 ChangeState();
                 return true;

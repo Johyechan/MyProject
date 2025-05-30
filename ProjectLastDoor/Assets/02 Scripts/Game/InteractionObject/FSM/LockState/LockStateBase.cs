@@ -7,11 +7,11 @@ namespace Game.InteractionObject.FSM
     // 자물쇠 상태의 부모 클래스
     public class LockStateBase : IState
     {
-        protected LockInteraction _lockInteraction;
+        protected PushButtonLock _pushButtonLock;
 
-        public LockStateBase(LockInteraction lockInteraction)
+        public LockStateBase(PushButtonLock pushButtonLock)
         {
-            _lockInteraction = lockInteraction;
+            _pushButtonLock = pushButtonLock;
         }
 
         public virtual void OnEnter()
