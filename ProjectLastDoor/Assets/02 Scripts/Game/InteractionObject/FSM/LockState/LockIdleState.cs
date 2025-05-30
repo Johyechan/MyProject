@@ -30,8 +30,9 @@ namespace Game.InteractionObject.FSM
             _lockInteraction.gameObject.layer = LayerMask.NameToLayer("Interaction"); // 자물쇠(자기자신)를 상호작용 가능한 상태로 변경
             _lockInteraction.ChangeChannel(false); // 플레이어 시네머신으로 채널 전환
             _lockInteraction.IsFailed = false; // 상태 초기화 (실패 초기화)
+            _lockInteraction.IsSuccess = false; // 상태 초기화 (최종적인 성공 여부 초기화)
             _lockInteraction.SuccessCount = 0; // 상태 초기화 (성공 초기화)
         }
     }
 }
-// 마지막 작성 일자: 2025.05.29
+// 마지막 작성 일자: 2025.05.30

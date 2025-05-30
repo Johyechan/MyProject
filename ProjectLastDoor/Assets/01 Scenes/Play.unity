@@ -1173,7 +1173,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183222053}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a7478ca59d3e05b4caaf719ff185cef7, type: 2}
   m_CullingMode: 0
@@ -7296,8 +7296,8 @@ Transform:
   m_GameObject: {fileID: 1298789101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.392}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.35}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0.503}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 881581451}
@@ -7419,6 +7419,7 @@ MonoBehaviour:
   _interactionCam: {fileID: 423307163}
   _playerCam: {fileID: 1699039237}
   _successGoal: 1
+  _successAnimator: {fileID: 183222055}
 --- !u!1 &1331100487
 GameObject:
   m_ObjectHideFlags: 0
@@ -8579,6 +8580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3f68dbeddaee740b1ab28dadc3c003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _xMaxAngle: 45
+  _xMinAngle: -45
 --- !u!1 &1728102210
 GameObject:
   m_ObjectHideFlags: 0

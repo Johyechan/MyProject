@@ -10,6 +10,8 @@ namespace Game.MyCamera
     {
         private float _lastXAngle = 0; // 마지막 회전 값을 저장하는 변수
         private PlayerVariables _variables;
+        [SerializeField] private float _xMaxAngle; // 최대 회전 각도
+        [SerializeField] private float _xMinAngle; // 최소 회전 각도
 
         private void Start()
         {
@@ -29,7 +31,7 @@ namespace Game.MyCamera
 
                 if (xAngle > 180) xAngle -= 360f; // 만약 xAngle이 180도 이상이라면 360도를 뺌 왜냐하면 유니티는 음수 각도를 사용하지 않기 때문
 
-                if (xAngle > -30f && xAngle < 30f) // x축 회전 값이 -30 이상, 30 이하일 경우 (카메라가 뒤로 완전히 회전하는 경우를 막기 위해)
+                if (xAngle > _xMinAngle && xAngle < _xMaxAngle) // x축 회전 값이 -30 이상, 30 이하일 경우 (카메라가 뒤로 완전히 회전하는 경우를 막기 위해)
                 {
                     transform.rotation = Quaternion.Euler(xAngle, GameManager.Instance.Player.transform.eulerAngles.y, 0); // 그냥 값을 그대로 할당
                     _lastXAngle = xAngle; // 그리고 마지막 회전 값을 저장
@@ -42,4 +44,4 @@ namespace Game.MyCamera
         }
     }
 }
-// 마지막 작성 일자: 2025.05.27
+// 마지막 작성 일자: 2025.05.30
