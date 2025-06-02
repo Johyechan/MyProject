@@ -126,11 +126,8 @@ MonoBehaviour:
   _brain: {fileID: 0}
   _interactionCam: {fileID: 0}
   _playerCam: {fileID: 0}
-  _drawer: {fileID: 6669533113790618948}
+  _openableObject: {fileID: 411023498322448336}
   _holeNumber: 0
-  _openDistance: 1.7
-  _rattleDistance: 0.01
-  _animationTime: 0.5
 --- !u!1 &6145066725989682890
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,6 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6669533113790618948}
+  - component: {fileID: 411023498322448336}
   m_Layer: 0
   m_Name: DrawerBox
   m_TagString: Untagged
@@ -600,6 +598,21 @@ Transform:
   - {fileID: 632155939329262506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &411023498322448336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971532418182970177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1b4f3569503ae4e85e9205d8aae5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationTime: 0.5
+  _openDistance: 2
+  _rattleDistance: 0.01
 --- !u!1 &9068670413675376866
 GameObject:
   m_ObjectHideFlags: 0

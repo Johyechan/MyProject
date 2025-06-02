@@ -32,12 +32,15 @@ namespace Game.Player
 
             if (Physics.Raycast(ray, out RaycastHit hit, _rayDistance)) // 만약 객체와 닿는다면
             {
-                if (hit.transform.TryGetComponent(out IInteraction interaction)) // 상호작용 인터페이스를 가져올 수 있는지(상호작용이 되는 객체인지) 확인
+                if(hit.collider.gameObject.layer == LayerMask.NameToLayer(GameManager.Instance.InteractionLayerName)) // 상호작용 레이어인지 확인
                 {
-                    GameManager.Instance.IsInteractionObjectFind = true; // 상호작용 가능 오브젝트를 감지 함
-                    _guideImage.gameObject.SetActive(true); // 가이드 사진 활성화
-                    _currentInteraction = interaction; // 현재 상호작용 갱신
-                    return true; // 상호작용 객체 감지 함 반환
+                    if (hit.transform.TryGetComponent(out IInteraction interaction)) // 상호작용 인터페이스를 가져올 수 있는지(상호작용이 되는 객체인지) 확인
+                    {
+                        GameManager.Instance.IsInteractionObjectFind = true; // 상호작용 가능 오브젝트를 감지 함
+                        _guideImage.gameObject.SetActive(true); // 가이드 사진 활성화
+                        _currentInteraction = interaction; // 현재 상호작용 갱신
+                        return true; // 상호작용 객체 감지 함 반환
+                    }
                 }
 
                 GameManager.Instance.IsInteractionObjectFind = false; // 상호작용 가능 오브젝트를 감지 못함
@@ -57,4 +60,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.22
+// 마지막 작성 일자: 2025.06.02

@@ -22,7 +22,7 @@ namespace Game.InteractionObject.FSM
 
             foreach(GameObject button in _buttons) // 자물쇠 버튼들 순회
             {
-                button.layer = LayerMask.NameToLayer("Interaction"); // 레이어를 변경시켜 상호작용 가능하게 변경
+                button.layer = LayerMask.NameToLayer(GameManager.Instance.InteractionLayerName); // 레이어를 변경시켜 상호작용 가능하게 변경
             }
 
             _pushButtonLock.gameObject.layer = 0; // 자물쇠(자기 자신)를 상호작용하지 못하도록 변경
@@ -33,4 +33,4 @@ namespace Game.InteractionObject.FSM
         }
     }
 }
-// 마지막 작성 일자: 2025.05.28
+// 마지막 작성 일자: 2025.06.02

@@ -46,7 +46,7 @@ namespace Game.InteractionObject
 
             _idleState = new LockIdleState(this, _buttons);
             _waitState = new LockWaitState(this, _buttons);
-            _successState = new LockSuccessState(this, _successAnimator);
+            _successState = new LockSuccessState(this, _successAnimator, _buttons);
             _failedState = new LockFailedState(this);
 
             _idleTransition = new LockIdleTransition(_machine, _idleState, this);
@@ -77,4 +77,4 @@ namespace Game.InteractionObject
         }
     }
 }
-// 마지막 작성 일자: 2025.05.30
+// 마지막 작성 일자: 2025.06.02
