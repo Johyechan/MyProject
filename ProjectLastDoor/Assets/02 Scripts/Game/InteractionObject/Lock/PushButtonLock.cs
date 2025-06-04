@@ -19,6 +19,8 @@ namespace Game.InteractionObject
 
         public bool IsSuccess { get; set; } // 성공 여부 판단
 
+        [SerializeField] private float _delay;
+
         [SerializeField] private int _successGoal;
 
         [SerializeField] private Animator _successAnimator;
@@ -46,8 +48,8 @@ namespace Game.InteractionObject
 
             _idleState = new LockIdleState(this, _buttons);
             _waitState = new LockWaitState(this, _buttons);
-            _successState = new LockSuccessState(this, _successAnimator, _buttons);
-            _failedState = new LockFailedState(this);
+            _successState = new LockSuccessState(this, _buttons, _successAnimator);
+            _failedState = new LockFailedState(this, _buttons, _delay);
 
             _idleTransition = new LockIdleTransition(_machine, _idleState, this);
             _waitTransition = new LockWaitTransition(_machine, _waitState, this);
@@ -77,4 +79,4 @@ namespace Game.InteractionObject
         }
     }
 }
-// 마지막 작성 일자: 2025.06.02
+// 마지막 작성 일자: 2025.06.04

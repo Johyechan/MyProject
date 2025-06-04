@@ -8,13 +8,15 @@ namespace Game.Player
     public class PlayerAct
     {
         private Transform _playerTrans; // 플레이어의 Transform
+        private Rigidbody _rigid; // 플레이어의 물리 엔진
         private Transform _playerCamTrans; // 플레이어의 눈 역할을 하는 카메라 Transform
         private float _moveSpeed; // 이동 속도
 
         // 생성자에서 변수 초기화
-        public PlayerAct(Transform playerTrans, Transform playerCamTrans, float moveSpeed)
+        public PlayerAct(Transform playerTrans, Rigidbody rigid, Transform playerCamTrans, float moveSpeed)
         {
             _playerTrans = playerTrans;
+            _rigid = rigid;
             _playerCamTrans = playerCamTrans;
             _moveSpeed = moveSpeed;
         }
@@ -23,7 +25,7 @@ namespace Game.Player
         public void Move(Vector2 moveInput)
         {
             Vector3 moveDir = _playerTrans.forward.normalized * moveInput.y + _playerTrans.right.normalized * moveInput.x; // 플레이어가 바라보고 있는 방향을 기준으로 움직임 + Vector2로 이동 벡터를 받았기 때문에 x축(right)은 같지만 매개변수의 y축을 z축(forward)의 이동으로 지정
-            _playerTrans.Translate(moveDir * _moveSpeed * Time.deltaTime, Space.World); //  부모의 움직임에 관여받지 않기 위해 Space를 월드로 설정
+            _rigid.MovePosition(_playerTrans.position + (moveDir * _moveSpeed * Time.deltaTime)); // 물리 엔진으로 움직임(플레이어의 기존 위치에서 매 프레임마다 움직일 방향으로 움직일 속도만큼)
         }
 
         // 움직이는 방향을 바라보게 하는 함수
@@ -37,4 +39,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.27
+// 마지막 작성 일자: 2025.06.04

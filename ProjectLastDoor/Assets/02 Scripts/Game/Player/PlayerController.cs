@@ -35,9 +35,10 @@ namespace Game.Player
         {
             IsStart = false;
 
+            _rigid.useGravity = true;
             // 인풋이 필요한 시점은 처음 시작 후 애니메이션이 전부 끝나고 난 후이기 때문에 여기서 인풋 함수 활성화
             _inputHandle.OnEnable(); // 인풋 핸들의 비활성화 함수 호출
         }
     }
 }
-// 마지막 작성 일자: 2025.05.28
+// 마지막 작성 일자: 2025.06.04

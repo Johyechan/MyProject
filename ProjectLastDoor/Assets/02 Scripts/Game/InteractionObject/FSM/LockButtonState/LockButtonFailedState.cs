@@ -8,7 +8,7 @@ namespace Game.InteractionObject.FSM
     // 틀린 버튼인 상태
     public class LockButtonFailedState : LockButtonStateBase
     {
-        public LockButtonFailedState(Material material, float animationTime, PushButtonLock pushButtonLock) : base(material, animationTime, pushButtonLock)
+        public LockButtonFailedState(PushButtonLock pushButtonLock, LockButton lockButton, Material material, float animationTime) : base(pushButtonLock, lockButton, material, animationTime)
         {
         }
 
@@ -17,10 +17,9 @@ namespace Game.InteractionObject.FSM
             base.OnEnter();
 
             Sequence sequence = DOTween.Sequence(); // 시퀀스 생성
-            sequence.Append(_material.DOColor(Color.red, _animationTime)); // 버튼 색을 붉게 변경
-            sequence.Append(_material.DOColor(Color.white, _animationTime)); // 버튼 색을 다시 흰색으로 변경
             sequence.AppendCallback(() => _pushButtonLock.IsFailed = true); // 애니메이션이 끝난 후 자물쇠에 실패 알리기
+            sequence.Append(_material.DOColor(Color.red, _animationTime)); // 버튼 색을 붉게 변경
         }
     }
 }
-
+// 마지막 작성 일자: 2025.06.04

@@ -2688,6 +2688,7 @@ GameObject:
   - component: {fileID: 424417905}
   - component: {fileID: 424417904}
   - component: {fileID: 424417903}
+  - component: {fileID: 424417909}
   - component: {fileID: 424417907}
   - component: {fileID: 424417908}
   m_Layer: 0
@@ -2829,6 +2830,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &424417909
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424417902}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1001 &426318904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7894,6 +7922,7 @@ MonoBehaviour:
   _brain: {fileID: 330585548}
   _interactionCam: {fileID: 423307163}
   _playerCam: {fileID: 1699039237}
+  _delay: 1.5
   _successGoal: 8
   _successAnimator: {fileID: 183222055}
 --- !u!1 &1331100487
@@ -8583,6 +8612,7 @@ GameObject:
   - component: {fileID: 1576159870}
   - component: {fileID: 1576159872}
   - component: {fileID: 1576159871}
+  - component: {fileID: 1576159873}
   m_Layer: 5
   m_Name: Guide
   m_TagString: Untagged
@@ -8647,6 +8677,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576159869}
   m_CullTransparentMesh: 1
+--- !u!114 &1576159873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576159869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab25f9e4e030954381a46a7a66a4b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xPos: 120
+  _yPos: -120
 --- !u!1 &1576231985
 GameObject:
   m_ObjectHideFlags: 0

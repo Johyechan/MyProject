@@ -22,6 +22,8 @@ namespace Game.Player
 
         [SerializeField] protected Image _guideImage; // 상호작용 키 가이드 UI
 
+        protected Rigidbody _rigid; // 플레이어 물리 엔진
+
         protected PlayerInputHandle _inputHandle; // 인풋을 처리하는 클래스
         protected PlayerAct _act; // 행동을 처리하는 클래스
         protected PlayerInteractionRaycaster _interactionRaycaster; // 상호작용을 처리하는 클래스
@@ -48,10 +50,12 @@ namespace Game.Player
         {
             KeyNumbers = new HashSet<int>();
             GameManager.Instance.Player = gameObject; // 게임 매니저의 Player를 자기자신으로 지정
+            _rigid = GetComponent<Rigidbody>();
+            _rigid.useGravity = false; // 처음에는 중력 적용 X
             IsStart = true;
 
             _inputHandle = new PlayerInputHandle(this);
-            _act = new PlayerAct(transform, _playerCamTrans, _moveSpeed);
+            _act = new PlayerAct(transform, _rigid, _playerCamTrans, _moveSpeed);
             _interactionRaycaster = new PlayerInteractionRaycaster(_guideImage, _rayDistance);
             _animator = GetComponent<Animator>();
 
@@ -74,4 +78,4 @@ namespace Game.Player
         }
     }
 }
-// 마지막 작성 일자: 2025.05.30
+// 마지막 작성 일자: 2025.06.04

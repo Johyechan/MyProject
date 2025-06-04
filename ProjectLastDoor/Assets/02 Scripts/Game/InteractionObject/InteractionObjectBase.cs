@@ -26,10 +26,10 @@ namespace Game.InteractionObject
 
         protected virtual void Update()
         {
+            _machine.UpdateExecute();
+
             if(_transitionHandle != null)
                 if (_transitionHandle.CheckTransition()) return;
-
-            _machine.UpdateExecute();
         }
 
         public abstract void Interaction(); // 상호작용 함수

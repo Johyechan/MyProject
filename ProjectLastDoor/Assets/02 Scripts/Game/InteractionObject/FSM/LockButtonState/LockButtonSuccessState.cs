@@ -7,7 +7,7 @@ namespace Game.InteractionObject.FSM
     // 맞는 버튼인 상태
     public class LockButtonSuccessState : LockButtonStateBase
     {
-        public LockButtonSuccessState(Material material, float animationTime, PushButtonLock pushButtonLock) : base(material, animationTime, pushButtonLock)
+        public LockButtonSuccessState(PushButtonLock pushButtonLock, LockButton lockButton, Material material, float animationTime) : base(pushButtonLock, lockButton, material, animationTime)
         {
         }
 

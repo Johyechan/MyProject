@@ -36,9 +36,9 @@ namespace Game.InteractionObject
             _pushButtonLock = transform.parent.GetComponent<PushButtonLock>(); // 부모, 즉 자물쇠 클래스 가져오기
             _material = GetComponent<Renderer>().material; // 실패와 성공에 따라 버튼의 색 변경을 위한 변수
 
-            _idleState = new LockButtonIdleState(_material, _animationTime, _pushButtonLock); // 상호작용 되지 않은 상태 
-            _successState = new LockButtonSuccessState(_material, _animationTime, _pushButtonLock); // 성공 버튼 상태
-            _failedState = new LockButtonFailedState(_material, _animationTime, _pushButtonLock); // 실패 버튼 상태
+            _idleState = new LockButtonIdleState(_pushButtonLock, this, _material, _animationTime); // 상호작용 되지 않은 상태 
+            _successState = new LockButtonSuccessState(_pushButtonLock, this, _material, _animationTime); // 성공 버튼 상태
+            _failedState = new LockButtonFailedState(_pushButtonLock, this, _material, _animationTime); // 실패 버튼 상태
 
             _idleTransition = new LockButtonIdleTransition(_machine, _idleState, this); // 상호작용 되지 않은 상태로 전이
             _successTransition = new LockButtonSuccessTransition(_machine, _successState, this); // 성공 버튼 상태로 전이
@@ -47,8 +47,8 @@ namespace Game.InteractionObject
             _transitionHandle = new TransitionHandle(new List<ITransition>()
             {
                 _idleTransition,
-                _successTransition,
-                _failedTransition
+                _failedTransition,
+                _successTransition
             });
 
             IsSuccess = false;
@@ -71,4 +71,4 @@ namespace Game.InteractionObject
         }
     }
 }
-// 마지막 작성 일자: 2025.05.30
+// 마지막 작성 일자: 2025.06.04

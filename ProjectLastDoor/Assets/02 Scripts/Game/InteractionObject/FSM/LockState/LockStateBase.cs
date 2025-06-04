@@ -1,4 +1,5 @@
 using MyUtil.FSM;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.InteractionObject.FSM
@@ -8,10 +9,12 @@ namespace Game.InteractionObject.FSM
     public class LockStateBase : IState
     {
         protected PushButtonLock _pushButtonLock;
+        protected List<GameObject> _buttons;
 
-        public LockStateBase(PushButtonLock pushButtonLock)
+        public LockStateBase(PushButtonLock pushButtonLock, List<GameObject> buttons)
         {
             _pushButtonLock = pushButtonLock;
+            _buttons = buttons;
         }
 
         public virtual void OnEnter()
@@ -30,4 +33,4 @@ namespace Game.InteractionObject.FSM
         }
     }
 }
-// 마지막 작성 일자: 2025.05.28
+// 마지막 작성 일자: 2025.06.04

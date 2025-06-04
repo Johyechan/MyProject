@@ -9,11 +9,8 @@ namespace Game.InteractionObject.FSM
     // 자물쇠 상호작용 후 상태
     public class LockWaitState : LockStateBase
     {
-        private List<GameObject> _buttons = new List<GameObject>();
-
-        public LockWaitState(PushButtonLock pushButtonLock, List<GameObject> buttons) : base(pushButtonLock)
+        public LockWaitState(PushButtonLock pushButtonLock, List<GameObject> buttons) : base(pushButtonLock, buttons)
         {
-            _buttons = buttons;
         }
 
         public override void OnEnter()
@@ -33,4 +30,4 @@ namespace Game.InteractionObject.FSM
         }
     }
 }
-// 마지막 작성 일자: 2025.06.02
+// 마지막 작성 일자: 2025.06.04

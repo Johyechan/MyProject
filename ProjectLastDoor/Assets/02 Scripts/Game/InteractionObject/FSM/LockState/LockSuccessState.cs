@@ -9,13 +9,11 @@ namespace Game.InteractionObject.FSM
     // 자물쇠 풀기 성공 상태
     public class LockSuccessState : LockStateBase
     {
-        private List<GameObject> _buttons;
         private Animator _successAnimator;
 
-        public LockSuccessState(PushButtonLock pushButtonLock, Animator successAnimator, List<GameObject> buttons) : base(pushButtonLock)
+        public LockSuccessState(PushButtonLock pushButtonLock, List<GameObject> buttons, Animator animator) : base(pushButtonLock, buttons)
         {
-            _buttons = buttons;
-            _successAnimator = successAnimator;
+            _successAnimator = animator;
         }
 
         public override void OnEnter()
@@ -41,4 +39,4 @@ namespace Game.InteractionObject.FSM
         }
     }
 }
-// 마지막 작성 일자: 2025.06.02
+// 마지막 작성 일자: 2025.06.04
