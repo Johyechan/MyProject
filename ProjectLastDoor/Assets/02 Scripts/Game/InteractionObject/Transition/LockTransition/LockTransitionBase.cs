@@ -7,11 +7,11 @@ namespace Game.InteractionObject.Transition
     // 자물쇠 전이의 부모 클래스
     public abstract class LockTransitionBase : InteractionObjectTransitionBase
     {
-        protected PushButtonLock _pushButtonLock;
+        protected LockBase _lock;
 
-        protected LockTransitionBase(StateMachine machine, IState changeState, PushButtonLock pushButtonLock) : base(machine, changeState)
+        protected LockTransitionBase(StateMachine machine, IState changeState, LockBase lockBase) : base(machine, changeState)
         {
-            _pushButtonLock = pushButtonLock;
+            _lock = lockBase;
         }
     }
 }

@@ -8,13 +8,13 @@ namespace Game.InteractionObject.Transition
     // 상호작용 전 대기 상태로 전이
     public class LockIdleTransition : LockTransitionBase
     {
-        public LockIdleTransition(StateMachine machine, IState changeState, PushButtonLock pushButtonLock) : base(machine, changeState, pushButtonLock)
+        public LockIdleTransition(StateMachine machine, IState changeState, LockBase lockBase) : base(machine, changeState, lockBase)
         {
         }
 
         public override bool IsTransition()
         {
-            if(!_pushButtonLock.IsLockInteractionOn) // 자물쇠 상호작용이 아닐경우
+            if(!_lock.IsLockInteractionOn) // 자물쇠 상호작용이 아닐경우
             {
                 ChangeState();
                 return true;

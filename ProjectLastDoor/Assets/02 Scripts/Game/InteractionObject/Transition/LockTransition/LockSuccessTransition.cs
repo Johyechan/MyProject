@@ -10,14 +10,14 @@ namespace Game.InteractionObject.Transition
     {
         private int _successGoal;
 
-        public LockSuccessTransition(StateMachine machine, IState changeState, PushButtonLock pushButtonLock, int successGoal) : base(machine, changeState, pushButtonLock)
+        public LockSuccessTransition(StateMachine machine, IState changeState, LockBase lockBase, int successGoal) : base(machine, changeState, lockBase)
         {
             _successGoal = successGoal;
         }
 
         public override bool IsTransition()
         {
-            if(_pushButtonLock.SuccessCount >= _successGoal) // 만약 성공 상태라면
+            if(_lock.SuccessCount >= _successGoal) // 만약 성공 상태라면
             {
                 ChangeState();
                 return true;

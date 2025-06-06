@@ -12,7 +12,7 @@ namespace Game.InteractionObject.FSM
     {
         private float _delay;
 
-        public LockFailedState(PushButtonLock pushButtonLock, List<GameObject> buttons, float delay) : base(pushButtonLock, buttons)
+        public LockFailedState(LockBase lockBase, List<GameObject> buttons, float delay) : base(lockBase, buttons)
         {
             _delay = delay;
         }
@@ -25,13 +25,13 @@ namespace Game.InteractionObject.FSM
                 .AppendCallback(() => {
                     foreach (GameObject button in _buttons) // 자물쇠 버튼들 순회
                     {
-                        LockButton buttonBtn = button.GetComponent<LockButton>(); // 그리고 LockButton을 가져와서
+                        LockTypeBase buttonBtn = button.GetComponent<LockTypeBase>(); // 그리고 LockButton을 가져와서
                         buttonBtn.IsFailed = true; // 모든 버튼을 실패 상태
                     }
                 })
                 .AppendInterval(_delay)
-                .AppendCallback(() => _pushButtonLock.ChangeChannel(false)) // 시네머신 채널 플레이어 채널로 전환
-                .InsertCallback(_delay, () => _pushButtonLock.IsLockInteractionOn = false) // 자물쇠 상호작용 종료
+                .AppendCallback(() => _lock.ChangeChannel(false)) // 시네머신 채널 플레이어 채널로 전환
+                .InsertCallback(_delay, () => _lock.IsLockInteractionOn = false) // 자물쇠 상호작용 종료
                 .AppendCallback(() => GameManager.Instance.IsNeedMousePos = false) // 마우스 커서 위치로 레이 쏘지 않아도 된다고 변경
                 .AppendCallback(() => GameManager.Instance.IsInteractionOn = false); // 상호작용 자체가 종료
         }

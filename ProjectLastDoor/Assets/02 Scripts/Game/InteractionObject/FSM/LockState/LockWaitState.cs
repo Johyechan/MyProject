@@ -9,7 +9,7 @@ namespace Game.InteractionObject.FSM
     // 자물쇠 상호작용 후 상태
     public class LockWaitState : LockStateBase
     {
-        public LockWaitState(PushButtonLock pushButtonLock, List<GameObject> buttons) : base(pushButtonLock, buttons)
+        public LockWaitState(LockBase lockBase, List<GameObject> buttons) : base(lockBase, buttons)
         {
         }
 
@@ -22,10 +22,10 @@ namespace Game.InteractionObject.FSM
                 button.layer = LayerMask.NameToLayer(GameManager.Instance.InteractionLayerName); // 레이어를 변경시켜 상호작용 가능하게 변경
             }
 
-            _pushButtonLock.gameObject.layer = 0; // 자물쇠(자기 자신)를 상호작용하지 못하도록 변경
-            _pushButtonLock.ChangeChannel(); // 시네머신 채널 변경
-            _pushButtonLock.IsFailed = false; // 실패 초기화
-            _pushButtonLock.SuccessCount = 0; // 성공 초기화
+            _lock.gameObject.layer = 0; // 자물쇠(자기 자신)를 상호작용하지 못하도록 변경
+            _lock.ChangeChannel(); // 시네머신 채널 변경
+            _lock.IsFailed = false; // 실패 초기화
+            _lock.SuccessCount = 0; // 성공 초기화
             GameManager.Instance.IsNeedMousePos = true; // 마우스 커서 위치로 레이를 쏴야 한다고 선언
         }
     }

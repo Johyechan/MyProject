@@ -1906,7 +1906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1918,7 +1918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 0.37499693
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1947,6 +1947,10 @@ PrefabInstance:
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532514010288179578, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
+      propertyPath: _successNumber
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4310344665353545628, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_Name
@@ -3370,7 +3374,7 @@ GameObject:
   - component: {fileID: 423307162}
   - component: {fileID: 423307163}
   m_Layer: 0
-  m_Name: LockCamera
+  m_Name: PushButtonLockCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3411,7 +3415,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 1298789102}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -6078,6 +6082,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7885247080052968632, guid: 83c75d8999ed4be43b1e77fcf20f556d, type: 3}
   m_PrefabInstance: {fileID: 767500067}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &788289219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788289220}
+  - component: {fileID: 788289221}
+  m_Layer: 0
+  m_Name: MorseLockCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &788289220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788289219}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -20.725, y: 0.7, z: -16.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1936880608}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &788289221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788289219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 16
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 1404440615}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 50
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
 --- !u!1 &789916560
 GameObject:
   m_ObjectHideFlags: 0
@@ -9431,7 +9510,7 @@ GameObject:
   - component: {fileID: 1298789103}
   - component: {fileID: 1298789106}
   m_Layer: 6
-  m_Name: Lock
+  m_Name: PushButtonLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9971,7 +10050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9983,7 +10062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 0.37499693
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10012,6 +10091,10 @@ PrefabInstance:
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532514010288179578, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
+      propertyPath: _successNumber
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4310344665353545628, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_Name
@@ -10520,7 +10603,7 @@ GameObject:
   - component: {fileID: 1404440617}
   - component: {fileID: 1404440616}
   m_Layer: 6
-  m_Name: Lock
+  m_Name: MorseLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11116,6 +11199,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579475736}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1579989819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1579989820}
+  - component: {fileID: 1579989821}
+  m_Layer: 0
+  m_Name: RingLockCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1579989820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579989819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -16.86, y: 0.7, z: -16.371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1936880608}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1579989821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579989819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 8
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 50
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
 --- !u!1001 &1606546291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12948,8 +13106,9 @@ GameObject:
   - component: {fileID: 1865272677}
   - component: {fileID: 1865272676}
   - component: {fileID: 1865272675}
+  - component: {fileID: 1865272678}
   m_Layer: 6
-  m_Name: Lock
+  m_Name: RingLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12965,7 +13124,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0.503}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.05}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1904634778}
@@ -13047,6 +13206,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865272673}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1865272678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865272673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b716203c8af4f459b698747d400cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _brain: {fileID: 330585548}
+  _interactionCam: {fileID: 1579989821}
+  _playerCam: {fileID: 1699039237}
+  _delay: 1.5
+  _successGoal: 3
+  _successAnimator: {fileID: 1714043776}
 --- !u!1 &1873544131
 GameObject:
   m_ObjectHideFlags: 0
@@ -13251,7 +13428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13263,7 +13440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 0.375
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13271,15 +13448,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000124670881683792, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13293,33 +13470,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3532514010288179578, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
+      propertyPath: _successNumber
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4310344665353545628, guid: 156afdc9071679d4b925e9a8c523f9b6, type: 3}
       propertyPath: m_Name
       value: NumberRing
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Height
-      value: 1.2470245
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Radius
-      value: 0.62351227
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.x
-      value: -0.03955841
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: -0.6661112
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.z
-      value: -0.013872782
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Direction
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13782,6 +13939,8 @@ Transform:
   - {fileID: 330585546}
   - {fileID: 1699039238}
   - {fileID: 423307162}
+  - {fileID: 1579989820}
+  - {fileID: 788289220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1948399877

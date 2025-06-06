@@ -10,13 +10,10 @@ namespace Game.InteractionObject
 {
     // 작성자: 조혜찬
     // 자물쇠의 버튼들을 기능을 담당하는 클래스
-    public class LockButton : InteractionObjectBase
+    public class LockButton : LockTypeBase
     {
         [SerializeField] private bool _isCorrectAnswer; // 이 버튼이 눌러야하는 버튼인지 결정하는 변수
         [SerializeField] private float _animationTime; // 색 변경 애니메이션 플레이 타임
-
-        public bool IsSuccess { get; set; } // 성공 여부 체크 변수
-        public bool IsFailed { get; set; } // 실패 여부 체크 변수
 
         private PushButtonLock _pushButtonLock; // 부모(자물쇠) 클래스
         private Material _material; // 버튼의 색을 변경하기 위한 변수

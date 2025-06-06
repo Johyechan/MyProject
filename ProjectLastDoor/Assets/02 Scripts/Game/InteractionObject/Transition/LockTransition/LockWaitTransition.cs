@@ -9,13 +9,13 @@ namespace Game.InteractionObject.Transition
     // 상호작용 후 상태로 전이
     public class LockWaitTransition : LockTransitionBase
     {
-        public LockWaitTransition(StateMachine machine, IState changeState, PushButtonLock pushButtonLock) : base(machine, changeState, pushButtonLock)
+        public LockWaitTransition(StateMachine machine, IState changeState, LockBase lockBase) : base(machine, changeState, lockBase)
         {
         }
 
         public override bool IsTransition()
         {
-            if(_pushButtonLock.IsLockInteractionOn) // 만약 자물쇠 상호작용이 되었다면
+            if(_lock.IsLockInteractionOn) // 만약 자물쇠 상호작용이 되었다면
             {
                 ChangeState(); // 상태 변경
                 return true; // 상태를 전이 또는 이 상태여야 한다고 반환

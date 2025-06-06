@@ -8,12 +8,12 @@ namespace Game.InteractionObject.FSM
     // 자물쇠 상태의 부모 클래스
     public class LockStateBase : IState
     {
-        protected PushButtonLock _pushButtonLock;
+        protected LockBase _lock;
         protected List<GameObject> _buttons;
 
-        public LockStateBase(PushButtonLock pushButtonLock, List<GameObject> buttons)
+        public LockStateBase(LockBase lockBase, List<GameObject> buttons)
         {
-            _pushButtonLock = pushButtonLock;
+            _lock = lockBase;
             _buttons = buttons;
         }
 
